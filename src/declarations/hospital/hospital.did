@@ -1,0 +1,6 @@
+service : {
+  addClaim: (text, text) -> () oneway;
+  addHospital: (text) -> () oneway;
+  getClaim: (text) -> (text) query;
+  removeClaim: (text) -> () oneway;
+}

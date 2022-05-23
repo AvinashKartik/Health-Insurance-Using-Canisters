@@ -4,6 +4,18 @@
       "main": "src/ICP/main.mo",
       "type": "motoko"
     },
+    "user": {
+      "main": "src/user/main.mo",
+      "type": "motoko"
+    },
+    "hospital": {
+      "main": "src/hospital/main.mo",
+      "type": "motoko"
+    },
+    "company": {
+      "main": "src/company/main.mo",
+      "type": "motoko"
+    },
     "ICP_assets": {
       "dependencies": [
         "ICP"

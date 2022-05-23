@@ -1,0 +1,10 @@
+service : {
+  addClaim: (text, text, text, text) -> () oneway;
+  addUser: (text) -> () oneway;
+  buyInsurance: (text, text, text, text) -> () oneway;
+  getClaim: (text) -> (text) query;
+  getInsurance: (text) -> (text) query;
+  hasClaimed: (text) -> (int) query;
+  hasInsurance: (text) -> (int) query;
+  removeClaim: (text) -> () oneway;
+}

@@ -1,0 +1,9 @@
+service : {
+  addClaim: (text, text) -> () oneway;
+  addCompany: (text) -> () oneway;
+  addVerifiedClaim: (text, nat, nat, text) -> () oneway;
+  firstVerifiedClaim: (text, nat) -> (text) query;
+  getClaim: (text) -> (text) query;
+  removeClaim: (text) -> () oneway;
+  removeVerifiedClaim: (text, nat) -> () oneway;
+}
