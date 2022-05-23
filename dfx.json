@@ -1,0 +1,35 @@
+{
+  "canisters": {
+    "ICP": {
+      "main": "src/ICP/main.mo",
+      "type": "motoko"
+    },
+    "ICP_assets": {
+      "dependencies": [
+        "ICP"
+      ],
+      "frontend": {
+        "entrypoint": "src/ICP_assets/src/index.html"
+      },
+      "source": [
+        "src/ICP_assets/assets",
+        "dist/ICP_assets/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "dfx": "0.9.3",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
