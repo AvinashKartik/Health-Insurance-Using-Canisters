@@ -8,9 +8,6 @@ ul {
   
   li {
     float: left;
-  }
-  
-  li a {
     display: block;
     color: white;
     text-align: center;
@@ -18,7 +15,8 @@ ul {
     text-decoration: none;
   }
   
+  
   /* Change the link color to #111 (black) on hover */
-  li a:hover {
+  li :hover {
     background-color: #111;
   }

@@ -5,6 +5,8 @@ import SignUpPage from './pages/Signup';
 import UserPage from './pages/User';
 import HospitalPage from './pages/Hospital';
 import CompanyPage from './pages/Company';
+import BuyForm from './components/BuyForm';
+import ClaimForm from './components/ClaimForm';
 import { User } from '../../declarations/user';
 import { ICP } from '../../declarations/ICP';
 import { Hospital } from '../../declarations/Hospital';
@@ -15,6 +17,8 @@ import { Company } from '../../declarations/Company';
 //user - 2
 //hospital - 3
 //company - 4
+//buy - 5
+//claim - 6
 
 function App() {
     var [uname, setUname] = useState("");
@@ -45,12 +49,22 @@ function App() {
         setf(0);
     }
 
+    function Buy() {
+        setf(5);
+    }
+
+    function Claim() {
+        setf(6);
+    }
+
     function LoadPage() {
         if (f === 0) return <LoginPage LoggedIn = {LoggedIn} SignUp = {SignUp} />;
         if (f === 1) return <SignUpPage SignedUp = {SignedUp} Login = {Login}/>;
-        if (f === 2) return <UserPage uname = {uname} />;
+        if (f === 2) return <UserPage uname = {uname} Buy = {Buy} Claim = {Claim} />;
         if (f === 3) return <HospitalPage uname = {uname} />;
         if (f === 4) return <CompanyPage uname = {uname} />;
+        if (f === 5) return <BuyForm uname = {uname} />;
+        if (f === 6) return <ClaimForm uname = {uname} />;
     };
 
     return <LoadPage />;

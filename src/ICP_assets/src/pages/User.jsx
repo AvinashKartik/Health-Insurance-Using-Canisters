@@ -7,7 +7,7 @@ import UserBody from '../components/UserBody';
 function User(props) {
   return (
     <>
-      <Header/>
+      <Header uname = {props.uname} Buy = {props.Buy} Claim = {props.Claim}/>
       <Container>
         <UserBody />
       </Container>
