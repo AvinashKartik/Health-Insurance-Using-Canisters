@@ -1,7 +1,7 @@
 import React from 'react'
 import "../styles.css"
 
-const HospitalHeader = () => {
+function HospitalHeader() {
     return (
         <ul style={{  listStyleType: 'none', margin: '0' ,padding: '0'}}>
             <li><a href="">Home</a></li>

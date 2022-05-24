@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HospitalBody = () => {
+function HospitalBody() {
   return (
     <div>HospitalBody</div>
   )

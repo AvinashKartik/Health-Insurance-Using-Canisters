@@ -2,7 +2,7 @@ import React from 'react'
 import Container from '@mui/material/Container';
 import Header from '../components/HospitalHeader';
 
-const Hospital = () => {
+function Hospital() {
   return (
     <>
       <Header/>
