@@ -1,4 +1,4 @@
 service : {
-  get: () -> (int);
-  topUp: (int) -> () oneway;
+  add: (text, text) -> () oneway;
+  get: (text) -> (text) query;
 }

@@ -8,11 +8,17 @@ import Heap "mo:base/Heap";
 import Deque "mo:base/Deque";
 import Iter "mo:base/Iter";
 import Order "mo:base/Order";
+import List "mo:base/List";
 
 actor {
 
-    class Company() {
+    public type Insurance = {
+        companyName : Text;
+        coinsurance : Int;
+        deductible : Int;
+    };
 
+    class Company() {
         class DynamicHull() {
             class Point(x1 : Int, y1 : Int, name1 : Text) {
                 public var x : Int = x1;
@@ -156,7 +162,6 @@ actor {
                 var claim = Point(-1, -1, "");
                 for (i in Iter.range(0, M - 1)) {
                     var p = get(time, i);
-                    // Debug.print(debug_show(p.x, p.y, p.name));
                     if (p.x != -1) {
                         if (dot(Point(time, 1, ""), p) > mx) {
                             mx := dot(Point(time, 1, ""), p);
@@ -200,6 +205,18 @@ actor {
 
         public func firstVerifiedClaim(time : Nat) : Text {
             return verifiedClaims.maxPriority(time);
+        };
+
+        public var policies : List.List<Insurance> = List.nil<Insurance>();
+
+        public func addPolicy(policy : Insurance) {
+            policies := List.push(policy, policies);
+        };
+
+        public func removePolicy(id: Nat) {
+            let listFront = List.take(policies, id);
+            let listBack = List.drop(policies, id + 1);
+            policies := List.append(listFront, listBack);
         };
     };
 
@@ -267,5 +284,45 @@ actor {
         };
     };
 
+    public func addPolicy(name : Text, deductible1 : Int, coinsurance1 : Int) {
+        switch (companies.get(name)) {
+            case null return;
+            case (?company) {
+                let newPolicy: Insurance = {
+                    companyName = name;
+                    deductible = deductible1;
+                    coinsurance = coinsurance1;
+                };
+                company.addPolicy(newPolicy);
+                companies.put(name, company);
+            };
+        };
+    };
 
+    public func removePolicy(name : Text, id : Nat) {
+        switch (companies.get(name)) {
+            case null return;
+            case (?company) {
+                company.removePolicy(id);
+                companies.put(name, company);
+            };
+        };
+    };
+
+    public query func getPolicies(name : Text) : async [Insurance] {
+        switch (companies.get(name)) {
+            case null return [];
+            case (?company) {
+                return List.toArray(company.policies);
+            };
+        };
+    };
+
+    public query func getAllPolicies() : async [Insurance] {
+        var p : List.List<Insurance> = List.nil<Insurance>();
+        for ((k,v) in companies.entries()) {
+            p := List.append(p, v.policies);
+        };
+        return List.toArray(p);
+    };
 };

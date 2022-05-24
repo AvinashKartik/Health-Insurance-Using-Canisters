@@ -1,69 +1,27 @@
 import React from "react";
 import Header from "./UserHeader";
+import Card from './Card'
 
 function BuyForm(props){
 
-    const initialFormData = Object.freeze({
-        deductible : "",
-        coInsurance: "",
-        companyName: "",
-        hospitalName: "",
-        cause:"",
-        amount:""
-    });
-
-    const [formData, updateFormData] = React.useState(initialFormData);
-
-    const handleChange = (e) => {
-        // console.log(formData)
-        updateFormData({
-          ...formData,
-      
-          
-        });
-
-      };
-
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        console.log(updateFormData.deductible);
-
+    function createCard(contact) {
+        console.log(contact);
+        return (
+            <Card
+            uname = {props.uname}
+            Bought={props.Bought}
+            name={contact.companyName}
+            coinsurance={contact.coinsurance.toString()}
+            deductible={contact.deductible.toString()}
+            />
+        );
     }
 
     return(
         <>
         <Header uname = {props.uname} Buy = {props.Buy} Claim = {props.Claim} Logout = {props.Logout} Home = {props.Home} />
-        <form style={{textAlign: 'center', paddingTop:'200px'}}>
-            <div style={{padding: '20px'}}>
-                <label for="deductible">Deductible : </label>
-                <input type="text" name="deductible" id="deductible" onChange={handleChange}></input><br/>
-            </div>
-            <div style={{padding: '20px'}}>
-                <label for="co-insurance">Co-Insurance : </label>
-                <input type="text" name="coInsurance" onChange={handleChange}></input><br/>
-            </div>
-            <div style={{padding: '20px'}}>
-                <label for="companyName">Insurance Company : </label>
-                <input type="text" name="companyName" onChange={handleChange}></input><br/>
-            </div>
-            <button type="submit" onClick={handleSubmit}>Submit</button>
-        </form> 
+        {props.policies.map(createCard)}
         </>
-        // <form style={{textAlign: 'center', paddingTop:'200px'}}>
-        //     <div style={{padding: '20px'}}>
-        //         <label for="deductible">Deductible : </label>
-        //         <input type="text" name="deductible" id="deductible" onChange={handleChange}></input><br/>
-        //     </div>
-        //     <div style={{padding: '20px'}}>
-        //         <label for="co-insurance">Co-Insurance : </label>
-        //         <input type="text" name="coInsurance" onChange={handleChange}></input><br/>
-        //     </div>
-        //     <div style={{padding: '20px'}}>
-        //         <label for="companyName">Insurance Company : </label>
-        //         <input type="text" name="companyName" onChange={handleChange}></input><br/>
-        //     </div>
-        //     <button type="submit" onClick={handleSubmit}>Submit</button>
-        // </form> 
     );
 
 }

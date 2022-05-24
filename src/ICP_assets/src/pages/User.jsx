@@ -8,9 +8,9 @@ import { LayoutRouteProps } from '../../../../node_modules/react-router-dom/inde
 function User(props) {
   return (
     <>
-      <Header uname = {props.uname} Buy = {props.Buy} Claim = {props.Claim} Logout = {props.Logout} Home = {props.Home}/>
+      <Header uname = {props.uname} Buy = {props.Buy} Claim = {props.Claim} Logout = {props.Logout} Home = {props.Home} />
       <Container>
-        <UserBody />
+        <UserBody uname = {props.uname} ins = {props.ins} cl = {props.cl} />
       </Container>
     </>
 

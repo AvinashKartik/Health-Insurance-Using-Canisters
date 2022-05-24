@@ -1,9 +1,19 @@
+type Insurance = 
+ record {
+   coinsurance: int;
+   companyName: text;
+   deductible: int;
+ };
 service : {
   addClaim: (text, text) -> () oneway;
   addCompany: (text) -> () oneway;
+  addPolicy: (text, int, int) -> () oneway;
   addVerifiedClaim: (text, nat, nat, text) -> () oneway;
   firstVerifiedClaim: (text, nat) -> (text) query;
+  getAllPolicies: () -> (vec Insurance) query;
   getClaim: (text) -> (text) query;
+  getPolicies: (text) -> (vec Insurance) query;
   removeClaim: (text) -> () oneway;
+  removePolicy: (text, nat) -> () oneway;
   removeVerifiedClaim: (text, nat) -> () oneway;
 }
