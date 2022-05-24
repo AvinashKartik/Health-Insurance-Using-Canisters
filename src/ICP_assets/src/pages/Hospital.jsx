@@ -1,7 +1,6 @@
 import React from 'react'
 import Container from '@mui/material/Container';
-import Header from '../components/UserHeader';
-import UserBody from '../components/UserBody';
+import Header from '../components/HospitalHeader';
 
 const Hospital = () => {
   return (
