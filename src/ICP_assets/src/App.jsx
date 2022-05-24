@@ -1,28 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Signin from './pages/Login';
-import SignUp from './pages/Signup';
-import User from './pages/User';
-import Hospital from './pages/Hospital';
-import Company from './pages/Company';
+import LoginPage from './pages/Login';
+import SignUpPage from './pages/Signup';
+import UserPage from './pages/User';
+import HospitalPage from './pages/Hospital';
+import CompanyPage from './pages/Company';
+import { User } from '../../declarations/user';
+import { ICP } from '../../declarations/ICP';
+import { Hospital } from '../../declarations/Hospital';
+import { Company } from '../../declarations/Company';
+
+//login - 0
+//signup - 1
+//user - 2
+//hospital - 3
+//company - 4
 
 function App() {
-  console.log("hi");
-  return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Signin/>} />
-        <Route path='/signUp' element={<SignUp/>} />
-        <Route path='/userDash' element={<User/>} />
-        <Route path='/hospitalDash' element={<Hospital/>} />
-        <Route path='/companyDash' element={<Company/>} />
-      </Routes>
-    </Router>
-    // <div>
-    //   <h1>Hi guys</h1>
-    // </div>
+    var [uname, setUname] = useState("");
+    var [type, setType] = useState("");
+    var [f, setf] = useState(0);
 
-  );
+    function Login() {
+        setf(0);
+    }
+
+    async function LoggedIn(x) {
+        setUname(x);
+        var t = await ICP.get(x);
+        console.log(x, t);
+        if (t === 'u') setf(2);
+        else if (t === 'h') setf(3);
+        else setf(4);
+    }
+
+    function SignUp() {
+        console.log(f);
+        setf(1);
+    }
+
+    async function SignedUp(x, y) {
+        console.log(x, y);
+        await ICP.add(x, y);
+        setf(0);
+    }
+
+    function LoadPage() {
+        if (f === 0) return <LoginPage LoggedIn = {LoggedIn} SignUp = {SignUp} />;
+        if (f === 1) return <SignUpPage SignedUp = {SignedUp} Login = {Login}/>;
+        if (f === 2) return <UserPage uname = {uname} />;
+        if (f === 3) return <HospitalPage uname = {uname} />;
+        if (f === 4) return <CompanyPage uname = {uname} />;
+    };
+
+    return <LoadPage />;
 }
 
 export default App;

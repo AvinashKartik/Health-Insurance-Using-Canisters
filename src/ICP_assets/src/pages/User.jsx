@@ -4,12 +4,12 @@ import Header from '../components/UserHeader';
 import UserBody from '../components/UserBody';
 
 
-const User = () => {
+function User(props) {
   return (
     <>
       <Header/>
       <Container>
-        <UserBody/>
+        <UserBody />
       </Container>
     </>
 
