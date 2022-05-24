@@ -43,18 +43,6 @@ function BuyForm(){
                 <label for="companyName">Insurance Company : </label>
                 <input type="text" name="companyName" onChange={handleChange}></input><br/>
             </div>
-            <div style={{padding: '20px'}}>
-                <label for="hospitalName">Hospital Name : </label>
-                <input type="text" name="hospitalName" onChange={handleChange}></input><br/>
-            </div>
-            <div style={{padding: '20px'}}>
-                <label for="cause">Cause : </label>
-                <input type="text" name="cause" onChange={handleChange}></input><br/>
-            </div>
-            <div style={{padding: '20px'}}>
-                <label for="amount">Amount : </label>
-                <input type="text" name="amount" onChange={handleChange}></input><br/>
-            </div>
             <button type="submit" onClick={handleSubmit}>Submit</button>
         </form> 
     );
