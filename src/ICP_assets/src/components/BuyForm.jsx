@@ -32,7 +32,7 @@ function BuyForm(props){
 
     return(
         <>
-        <Header uname = {props.uname} Buy = {props.Buy} Claim = {props.Claim}/>
+        <Header uname = {props.uname} Buy = {props.Buy} Claim = {props.Claim} Logout = {props.Logout} Home = {props.Home} />
         <form style={{textAlign: 'center', paddingTop:'200px'}}>
             <div style={{padding: '20px'}}>
                 <label for="deductible">Deductible : </label>
