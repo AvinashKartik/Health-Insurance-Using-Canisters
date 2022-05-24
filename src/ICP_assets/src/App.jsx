@@ -63,8 +63,8 @@ function App() {
         if (f === 2) return <UserPage uname = {uname} Buy = {Buy} Claim = {Claim} />;
         if (f === 3) return <HospitalPage uname = {uname} />;
         if (f === 4) return <CompanyPage uname = {uname} />;
-        if (f === 5) return <BuyForm uname = {uname} />;
-        if (f === 6) return <ClaimForm uname = {uname} />;
+        if (f === 5) return <BuyForm uname = {uname} Buy = {Buy} Claim = {Claim} />;
+        if (f === 6) return <ClaimForm uname = {uname} Buy = {Buy} Claim = {Claim} />;
     };
 
     return <LoadPage />;

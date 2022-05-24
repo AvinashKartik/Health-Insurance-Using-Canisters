@@ -1,7 +1,10 @@
 import React from 'react'
+import Header from './UserHeader'
 
-const ClaimForm = () => {
+function ClaimForm (props){
     return(
+        <>
+        <Header uname = {props.uname} Buy = {props.Buy} Claim = {props.Claim}/>
         <form style={{textAlign: 'center', paddingTop:'200px'}}>
             <div style={{padding: '20px'}}>
                 <label for="hospitalName">Hospital Name : </label>
@@ -17,6 +20,7 @@ const ClaimForm = () => {
             </div>
             <button type="submit">Submit</button>
         </form> 
+        </>
     );
 
 }
