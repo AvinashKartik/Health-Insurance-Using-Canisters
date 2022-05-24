@@ -15,20 +15,21 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const UserBody = () => {
   return (
-    <Grid container spacing={2}>
-        <Grid item xs={8}>
-            <Item>xs=8</Item>
-        </Grid>
-        <Grid item xs={4}>
-            <Item>xs=4</Item>
-        </Grid>
-        <Grid item xs={4}>
-            <Item>xs=4</Item>
-        </Grid>
-        <Grid item xs={8}>
-            <Item>xs=8</Item>
-        </Grid>
-    </Grid>
+    <Box
+        component="span"
+        m={1}
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        style={{paddingTop:'300px'}}
+        >
+        <Button variant="contained"  sx={{ height: 40 }} href="/BuyForm">
+            Buy Insurance
+        </Button>
+        <Button variant="contained"  sx={{ height: 40 }} href>
+            Claim Insurance
+        </Button>
+    </Box>
   )
 }
 
