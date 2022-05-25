@@ -1,12 +1,14 @@
 import React from 'react'
-import Container from '@mui/material/Container';
-import Header from '../components/HospitalHeader';
+import Header from '../components/HospitalHeader'
+import HospitalBody from '../components/HospitalBody';
 
-function Hospital() {
+function Hospital(props) {
   return (
     <>
-      <Header/>
-      
+      <Header uname = {props.uname} Logout = {props.Logout} Home = {props.Home} Claims = {props.Claims} />
+      <div>
+        <HospitalBody uname = {props.uname} cl = {props.cl} />
+      </div>
     </>
   )
 }
