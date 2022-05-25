@@ -176,7 +176,7 @@ actor {
                 };
                 return {
                     name = claim.name;
-                    time = claim.y;
+                    time = claim.x / -2;
                 };
             };
         };

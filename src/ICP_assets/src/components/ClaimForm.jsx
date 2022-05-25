@@ -37,7 +37,7 @@ function ClaimForm (props){
                     </div>
                     <div style={{padding: '20px'}}>
                         <label for="amount"><b>Amount Paid &nbsp; </b></label>
-                        <input type="text" style = {{border: "3px solid"}} name="amount"onChange = {handleChange} value = {amount} ></input><br/>
+                        <input type="text" style = {{border: "3px solid"}} name="amount" onChange = {handleChange} value = {amount} ></input><br/>
                     </div>
                     <div style={{padding: '20px'}}>
                         <button type="submit" onClick = {Submit} style = {{ width : "200px", height : "30px", backgroundColor : "#0E86D4", color : "black", fontSize : "15px"}} >Submit</button>

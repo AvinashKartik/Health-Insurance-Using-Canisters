@@ -6,9 +6,9 @@ import CompanyBody from '../components/CompanyBody';
 function Company(props) {
     return(
     <>
-        <Header uname = {props.uname} PendingCompany = {props.PendingCompany} Verified = {props.Verified} Logout = {props.Logout} Home = {props.Home} />
+        <Header uname = {props.uname} Logout = {props.Logout} Home = {props.Home} Claims = {props.Claims} Verified = {props.Verified} View = {props.View} Add = {props.Add} />
         <Container>
-            <CompanyBody uname = {props.uname} ins = {props.ins} cl = {props.cl} />
+            <CompanyBody uname = {props.uname} ccl = {props.ccl} vcl = {props.vcl} />
         </Container>
     </>
     );
