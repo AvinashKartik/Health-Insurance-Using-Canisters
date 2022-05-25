@@ -7,6 +7,8 @@ import HospitalPage from './pages/Hospital';
 import CompanyPage from './pages/Company';
 import BuyForm from './components/BuyForm';
 import ClaimForm from './components/ClaimForm';
+import PendingCompanyClaims from './components/PendingCompanyClaims';
+import VerifiedClaims from './components/VerifiedClaims';
 import { user } from '../../declarations/user';
 import { ICP } from '../../declarations/ICP';
 import { hospital } from '../../declarations/hospital';
@@ -93,7 +95,6 @@ function App() {
         if (f === 3) return <HospitalPage uname = {uname} />;
         if (f === 4) return <CompanyPage uname = {uname} />;
         if (f === 5) return <BuyForm uname = {uname} Buy = {Buy} Claim = {Claim} Logout = {Login} Home = {LoggedIn} policies = {policies} Bought = {Bought} />;
-        if (f === 6) return <ClaimForm uname = {uname} Buy = {Buy} Claim = {Claim} Logout = {Login} Home = {LoggedIn} Claimed = {Claimed} />;
     };
 
     return <LoadPage />;
