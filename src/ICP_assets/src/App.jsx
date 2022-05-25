@@ -8,6 +8,8 @@ import CompanyPage from './pages/Company';
 import BuyForm from './components/BuyForm';
 import ClaimForm from './components/ClaimForm';
 import HospitalClaimForm from './components/HospitalClaimForm';
+import PendingCompanyClaims from './components/PendingCompanyClaims';
+import VerifiedClaims from './components/VerifiedClaims';
 import { user } from '../../declarations/user';
 import { ICP } from '../../declarations/ICP';
 import { hospital } from '../../declarations/hospital';
@@ -38,11 +40,6 @@ function App() {
     async function LoggedIn(x) {
         setUname(x);
         var t = await ICP.get(x);
-        // console.log(policies);
-        // var y = await company.getAllPolicies();
-        // setPolicies(y);
-        // var hc = await hospital.getClaim(x);
-        // setHcl(hc);
         if (t === 'u') {
             var y = await company.getAllPolicies();
             setPolicies(y);
@@ -54,6 +51,8 @@ function App() {
         } else if (t === 'h') {
             var hc = await hospital.getClaim(x);
             setHcl(hc);
+            var c = await user.getClaim(hc);
+            setCl(c);
             setf(3);
         }else if (t == 'c') {
              setf(4);
@@ -91,11 +90,28 @@ function App() {
     async function Claimed(name, x, y, z) {
         console.log(name, x, y, z);
         await user.addClaim(name, x, y, parseInt(z));
+        await company.addClaim(ins.companyName, name);
         LoggedIn(name);
     }
 
-    async function HospitalViewClaim() {
+    function HospitalViewClaim() {
         setf(7);
+    }
+
+    async function HospitalVirifiedClaim(name) {
+        await hospital.removeClaim(name);
+        var i = await user.getInsurance(x);
+        setIns(i);
+        const hours = 1000 * 60 * 60;
+        const d = new Date();
+        let hour = Math.round(d.getTime() / hours);
+        await company.addVerifiedClaim(ins.companyName, cl.amount, hour, hcl);
+        setf(3);
+    }
+
+    async function HospitalFalseClaim(name) {
+        await hospital.removeClaim(name);
+        setf(3);
     }
 
     function LoadPage() {
@@ -106,7 +122,7 @@ function App() {
         if (f === 4) return <CompanyPage uname = {uname} />;
         if (f === 5) return <BuyForm uname = {uname} Buy = {Buy} Claim = {Claim} Logout = {Login} Home = {LoggedIn} policies = {policies} Bought = {Bought} />;
         if (f === 6) return <ClaimForm uname = {uname} Buy = {Buy} Claim = {Claim} Logout = {Login} Home = {LoggedIn} Claimed = {Claimed} />;
-        if (f === 7) return <HospitalClaimForm uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {HospitalViewClaim} cl = {hcl} />
+        if (f === 7) return <HospitalClaimForm uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {HospitalViewClaim} cl = {hcl} claim = {cl} verify = {HospitalVirifiedClaim} false = {HospitalFalseClaim} />
     };
 
     return <LoadPage />;

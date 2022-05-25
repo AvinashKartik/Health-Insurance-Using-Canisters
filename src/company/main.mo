@@ -18,6 +18,11 @@ actor {
         deductible : Int;
     };
 
+    public type ClaimReturn = {
+        name : Text;
+        time : Int;
+    };
+
     class Company() {
         class DynamicHull() {
             class Point(x1 : Int, y1 : Int, name1 : Text) {
@@ -157,7 +162,7 @@ actor {
                 };
             };
 
-            public func maxPriority(time : Nat) : Text {
+            public func maxPriority(time : Nat) : ClaimReturn {
                 var mx : Int = -1000000 * 1000000;
                 var claim = Point(-1, -1, "");
                 for (i in Iter.range(0, M - 1)) {
@@ -169,7 +174,10 @@ actor {
                         };
                     };
                 };
-                return claim.name;
+                return {
+                    name = claim.name;
+                    time = claim.y;
+                };
             };
         };
 
@@ -203,7 +211,7 @@ actor {
             verifiedClaims.del(time);
         };
 
-        public func firstVerifiedClaim(time : Nat) : Text {
+        public func firstVerifiedClaim(time : Nat) : ClaimReturn {
             return verifiedClaims.maxPriority(time);
         };
 
@@ -275,9 +283,12 @@ actor {
         };
     };
 
-    public query func firstVerifiedClaim(name : Text, time : Nat) : async Text {
+    public query func firstVerifiedClaim(name : Text, time : Nat) : async ClaimReturn {
         switch (companies.get(name)) {
-            case null return "";
+            case null return {
+                        name = "";
+                        time = -1;
+                    };
             case (?company) {
                 return company.firstVerifiedClaim(time);
             };
