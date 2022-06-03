@@ -1,5 +1,10 @@
 export const idlFactory = ({ IDL }) => {
   const ClaimReturn = IDL.Record({ 'name' : IDL.Text, 'time' : IDL.Int });
+  const ClaimReturnAmt = IDL.Record({
+    'cost' : IDL.Int,
+    'name' : IDL.Text,
+    'time' : IDL.Int,
+  });
   const Insurance = IDL.Record({
     'deductible' : IDL.Int,
     'coinsurance' : IDL.Int,
@@ -19,6 +24,7 @@ export const idlFactory = ({ IDL }) => {
         [ClaimReturn],
         ['query'],
       ),
+    'getAllClaims' : IDL.Func([IDL.Text], [IDL.Vec(ClaimReturnAmt)], ['query']),
     'getAllPolicies' : IDL.Func([], [IDL.Vec(Insurance)], ['query']),
     'getClaim' : IDL.Func([IDL.Text], [IDL.Text], ['query']),
     'getPolicies' : IDL.Func([IDL.Text], [IDL.Vec(Insurance)], ['query']),

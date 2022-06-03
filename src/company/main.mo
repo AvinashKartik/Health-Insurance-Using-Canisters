@@ -23,6 +23,12 @@ actor {
         time : Int;
     };
 
+    public type ClaimReturnAmt = {
+        name : Text;
+        time : Int;
+        cost : Int;
+    };
+
     class Company() {
         class DynamicHull() {
             class Point(x1 : Int, y1 : Int, name1 : Text) {
@@ -179,6 +185,14 @@ actor {
                     time = claim.x / -2;
                 };
             };
+
+            public func getName(time: Nat) : Text {
+                var timeMod : Nat = time % (M * M);
+                switch (values[timeMod].peekMin()) {
+                    case null return "";
+                    case (?x) return x.name;
+                };
+            };
         };
 
         var claims = Deque.empty<Text>();
@@ -202,12 +216,20 @@ actor {
         };
 
         var verifiedClaims = DynamicHull();
+        public var allVerifiedClaims = TrieMap.TrieMap<Text, ClaimReturnAmt>(Text.equal, Text.hash);
 
         public func addVerifiedClaim(cost : Nat, time : Nat, name : Text) {
             verifiedClaims.ins(cost, time, name);
+            allVerifiedClaims.put(name, {
+                cost = cost;
+                time = time;
+                name = "";
+            });
         };
 
         public func removeVerifiedClaim(time : Nat) {
+            var x = verifiedClaims.getName(time);
+            allVerifiedClaims.delete(x);
             verifiedClaims.del(time);
         };
 
@@ -336,4 +358,22 @@ actor {
         };
         return List.toArray(p);
     };
+
+    public query func getAllClaims(name : Text) : async [ClaimReturnAmt] {
+        switch (companies.get(name)) {
+            case null return [];
+            case (?company) {
+                var p : List.List<ClaimReturnAmt> = List.nil<ClaimReturnAmt>();
+                for ((k,v) in company.allVerifiedClaims.entries()) {
+                    let n: ClaimReturnAmt = {
+                        name = k;
+                        time = v.time;
+                        cost = v.cost;
+                    };
+                    p := List.push(n, p);
+                };
+                return List.toArray(p);
+            };
+        };
+    }
 };

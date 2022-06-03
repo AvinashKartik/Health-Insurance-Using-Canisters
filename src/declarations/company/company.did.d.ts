@@ -1,5 +1,10 @@
 import type { Principal } from '@dfinity/principal';
 export interface ClaimReturn { 'name' : string, 'time' : bigint }
+export interface ClaimReturnAmt {
+  'cost' : bigint,
+  'name' : string,
+  'time' : bigint,
+}
 export interface Insurance {
   'deductible' : bigint,
   'coinsurance' : bigint,
@@ -18,6 +23,7 @@ export interface _SERVICE {
       arg_3: string,
     ) => Promise<undefined>,
   'firstVerifiedClaim' : (arg_0: string, arg_1: bigint) => Promise<ClaimReturn>,
+  'getAllClaims' : (arg_0: string) => Promise<Array<ClaimReturnAmt>>,
   'getAllPolicies' : () => Promise<Array<Insurance>>,
   'getClaim' : (arg_0: string) => Promise<string>,
   'getPolicies' : (arg_0: string) => Promise<Array<Insurance>>,

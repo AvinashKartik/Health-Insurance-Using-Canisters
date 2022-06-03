@@ -12,6 +12,7 @@ import CompanyClaimPage from './components/PendingCompanyClaims';
 import VerifiedClaimPage from './components/VerifiedClaims';
 import PolicyPage from './components/ViewPolicy';
 import AddPolicyPage from './components/AddPolicy';
+import ViewClaim from './components/ViewClaims';
 import { user } from '../../declarations/user';
 import { ICP } from '../../declarations/ICP';
 import { hospital } from '../../declarations/hospital';
@@ -30,6 +31,7 @@ import { SnowshoeingOutlined } from '../../../node_modules/@mui/icons-material/i
 //verified claim - 9
 //view policy - 10
 //add policy - 11
+//view claims - 12
 
 function App() {
     var [uname, setUname] = useState("");
@@ -41,6 +43,7 @@ function App() {
     var [ccl, setCcl] = useState("");
     var [vcl, setVcl] = useState("");
     var [amt, setAmt] = useState(0);
+    var [CL, setCL] = useState([]);
 
     function Login() {
         console.log(policies);
@@ -179,19 +182,37 @@ function App() {
         LoggedIn(cname);
     }
 
+    async function ViewClaims(name) {
+        const hours = 1000 * 60 * 60;
+        const d = new Date();
+        let hour = Math.round(d.getTime() / hours);
+        var x = [];
+        var y = await company.getAllClaims(name);
+        await y.forEach(async (item, index) => {
+            x.push({
+                name : item.name,
+                time : BigInt(hour) - item.time,
+                cost : item.cost
+            });
+        });
+        setCL(x);
+        setf(12);
+    }
+
     function LoadPage() {
         if (f === 0) return <LoginPage LoggedIn = {LoggedIn} SignUp = {SignUp} />;
         if (f === 1) return <SignUpPage SignedUp = {SignedUp} Login = {Login}/>;
         if (f === 2) return <UserPage uname = {uname} Buy = {Buy} Claim = {Claim} Logout = {Login} Home = {LoggedIn} ins = {ins} cl = {cl} />;
         if (f === 3) return <HospitalPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {HospitalViewClaim} cl = {hcl} />;
-        if (f === 4) return <CompanyPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} ccl = {ccl} vcl = {vcl}/>;
+        if (f === 4) return <CompanyPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} VC = {ViewClaims} ccl = {ccl} vcl = {vcl}/>;
         if (f === 5) return <BuyForm uname = {uname} Buy = {Buy} Claim = {Claim} Logout = {Login} Home = {LoggedIn} policies = {policies} Bought = {Bought} />;
         if (f === 6) return <ClaimForm uname = {uname} Buy = {Buy} Claim = {Claim} Logout = {Login} Home = {LoggedIn} Claimed = {Claimed} />;
         if (f === 7) return <HospitalClaimPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {HospitalViewClaim} cl = {hcl} claim = {cl} verify = {HospitalVirifiedClaim} false = {HospitalFalseClaim} />;
-        if (f === 8) return <CompanyClaimPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} cl = {ccl} claim = {cl} send = {SendToHospital} />;
-        if (f === 9) return <VerifiedClaimPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} cl = {vcl} claim = {cl} send = {SendToUser} amt = {amt} />
-        if (f == 10) return <PolicyPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} policies = {policies} />
-        if (f == 11) return <AddPolicyPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} Added = {Added} />
+        if (f === 8) return <CompanyClaimPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} cl = {ccl} claim = {cl} VC = {ViewClaims} send = {SendToHospital} />;
+        if (f === 9) return <VerifiedClaimPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} cl = {vcl} claim = {cl} send = {SendToUser} VC = {ViewClaims} amt = {amt} />
+        if (f === 10) return <PolicyPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} VC = {ViewClaims} policies = {policies} />
+        if (f === 11) return <AddPolicyPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} VC = {ViewClaims} Added = {Added} />
+        if (f === 12) return <ViewClaim uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} VC = {ViewClaims} CL = {CL} />
     };
 
     return <LoadPage />;

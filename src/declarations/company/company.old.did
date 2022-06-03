@@ -15,6 +15,7 @@ service : {
   addPolicy: (text, int, int) -> () oneway;
   addVerifiedClaim: (text, nat, nat, text) -> () oneway;
   firstVerifiedClaim: (text, nat) -> (ClaimReturn) query;
+  getAllClaims: (text) -> (vec ClaimReturn) query;
   getAllPolicies: () -> (vec Insurance) query;
   getClaim: (text) -> (text) query;
   getPolicies: (text) -> (vec Insurance) query;

@@ -18,7 +18,7 @@ function AddForm(props){
 
     return(
         <>
-            <Header uname = {props.uname} Logout = {props.Logout} Home = {props.Home} Claims = {props.Claims} Verified = {props.Verified} View = {props.View} Add = {props.Add} />
+            <Header uname = {props.uname} Logout = {props.Logout} Home = {props.Home} Claims = {props.Claims} Verified = {props.Verified} View = {props.View} Add = {props.Add} VC = {props.VC} />
             <div className="box">
             <div className="content">
                 <h1 style={{textAlign: 'center'}} > Add Policy </h1>

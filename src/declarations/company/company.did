@@ -4,6 +4,12 @@ type Insurance =
    companyName: text;
    deductible: int;
  };
+type ClaimReturnAmt = 
+ record {
+   cost: int;
+   name: text;
+   time: int;
+ };
 type ClaimReturn = 
  record {
    name: text;
@@ -15,6 +21,7 @@ service : {
   addPolicy: (text, int, int) -> () oneway;
   addVerifiedClaim: (text, nat, nat, text) -> () oneway;
   firstVerifiedClaim: (text, nat) -> (ClaimReturn) query;
+  getAllClaims: (text) -> (vec ClaimReturnAmt) query;
   getAllPolicies: () -> (vec Insurance) query;
   getClaim: (text) -> (text) query;
   getPolicies: (text) -> (vec Insurance) query;
