@@ -18,7 +18,7 @@ function ViewPolicyForm(props){
 
     return(
         <>
-        <Header uname = {props.uname} Logout = {props.Logout} Home = {props.Home} Claims = {props.Claims} Verified = {props.Verified} View = {props.View} Add = {props.Add} ViewVerified = {props.ViewVerified}/>
+        <Header uname = {props.uname} Logout = {props.Logout} Home = {props.Home} Claims = {props.Claims} Verified = {props.Verified} View = {props.View} Add = {props.Add} />
         {props.policies.map(createCard)}
         </>
     );

@@ -32,17 +32,11 @@ function CompanyHeader(props) {
         props.Add(props.uname);
     }
 
-    function viewVerified(event){
-        event.preventDefault();
-
-    }
-
     return (
         <ul style={{  listStyleType: 'none', margin: '0' ,padding: '0'}}>
             <li onClick={home}>Home</li>
             <li onClick={pending}>Pending Claims</li>
             <li onClick={verified}>Verified Claims</li>
-            <li onClick={viewVerified}>View Verified Claims</li>
             <li onClick={add}>Add Policy</li>
             <li onClick={view}>View Policies</li>
             <li style={{float:"right"}} onClick={logout}>Logout</li>

@@ -1,0 +1,24 @@
+type Insurance = 
+ record {
+   coinsurance: int;
+   companyName: text;
+   deductible: int;
+   isActive: int;
+ };
+type Claim = 
+ record {
+   amount: int;
+   cause: text;
+   hospitalName: text;
+   isActive: int;
+ };
+service : {
+  addClaim: (text, text, text, int) -> () oneway;
+  addUser: (text) -> () oneway;
+  buyInsurance: (text, int, int, text) -> () oneway;
+  getClaim: (text) -> (Claim) query;
+  getInsurance: (text) -> (Insurance) query;
+  hasClaimed: (text) -> (int) query;
+  hasInsurance: (text) -> (int) query;
+  removeClaim: (text) -> () oneway;
+}

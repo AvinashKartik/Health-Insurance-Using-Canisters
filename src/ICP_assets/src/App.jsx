@@ -12,7 +12,6 @@ import CompanyClaimPage from './components/PendingCompanyClaims';
 import VerifiedClaimPage from './components/VerifiedClaims';
 import PolicyPage from './components/ViewPolicy';
 import AddPolicyPage from './components/AddPolicy';
-import ViewVerified from './components/ViewVerified';
 import { user } from '../../declarations/user';
 import { ICP } from '../../declarations/ICP';
 import { hospital } from '../../declarations/hospital';
@@ -180,10 +179,6 @@ function App() {
         LoggedIn(cname);
     }
 
-    async function ViewVerified(){
-        setf(12);
-    }
-
     function LoadPage() {
         if (f === 0) return <LoginPage LoggedIn = {LoggedIn} SignUp = {SignUp} />;
         if (f === 1) return <SignUpPage SignedUp = {SignedUp} Login = {Login}/>;
@@ -197,7 +192,6 @@ function App() {
         if (f === 9) return <VerifiedClaimPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} cl = {vcl} claim = {cl} send = {SendToUser} amt = {amt} />
         if (f == 10) return <PolicyPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} policies = {policies} />
         if (f == 11) return <AddPolicyPage uname = {uname} Logout = {Login} Home = {LoggedIn} Claims = {CompanyViewClaim} Verified = {VerifiedViewClaim} View = {ViewPolicy} Add = {AddPolicy} Added = {Added} />
-        if (f == 12) return <ViewVerified uname = {uname} Logout ={Login} Home = {LoggedIn} />
     };
 
     return <LoadPage />;
