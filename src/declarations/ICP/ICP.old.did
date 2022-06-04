@@ -1,4 +1,0 @@
-service : {
-  add: (text, text) -> () oneway;
-  get: (text) -> (text) query;
-}

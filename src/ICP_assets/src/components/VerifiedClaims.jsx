@@ -17,8 +17,8 @@ function VerifiedClaims(props){
                     <h2> Client Name : {props.cl.name} </h2>
                     <h2> Hospital Name : {props.claim.hospitalName} </h2>
                     <h2> Cause : {props.claim.cause} </h2>
-                    <h2> Amount paid by user : {props.claim.amount.toString()} </h2>
-                    <h2> Amount to be settled : {props.amt.toString()} </h2>
+                    <h2> Amount paid by user : Rs. {props.claim.amount.toString()} </h2>
+                    <h2> Amount to be settled : Rs. {props.amt.toString()} </h2>
                     <button type="button" onClick = {Send} style = {{ width : "200px", height : "30px", backgroundColor : "#04AA6D", color : "black", fontSize : "15px"}} >Settle</button>
                 </div>
             );
